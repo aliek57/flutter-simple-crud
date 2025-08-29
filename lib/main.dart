@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void removeItem(Vehicle v) {
+  void removeVehicle(Vehicle v) {
     if (editing != null) {
       _showMessage("Confirm or cancel actual editing", 4);
       return;
@@ -78,13 +78,13 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(children: [Text("Year: ${v.year}"), Spacer(flex:1), Text("KM: ${v.km}"),
                 Spacer(flex:1), Text("R\$ ${v.price}")],),
           ])),
-          IconButton(onPressed: (){ editItem(v);}, icon: Icon(Icons.edit)),
-          IconButton(onPressed: (){ removeItem(v);}, icon: Icon(Icons.delete_forever))
+          IconButton(onPressed: (){ editVehicle(v);}, icon: Icon(Icons.edit)),
+          IconButton(onPressed: (){ removeVehicle(v);}, icon: Icon(Icons.delete_forever))
       ]
     );
   }
 
-  Widget createItem(int idx) {
+  Widget createVehicle(int idx) {
     Vehicle v = vehicles[idx];
     ListTile item = ListTile(title: generateView(v),
       onTap: () { showVehicle(v); },
@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return item;
   }
 
-  void editItem(Vehicle v) {
+  void editVehicle(Vehicle v) {
     if(editing != null) { return; }
     editing = v;
     showVehicle(editing!);
@@ -192,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Expanded( child: ListView.builder(
                 itemCount: vehicles.length,
-                itemBuilder: (BuildContext ctx, int idx) {return createItem( idx ); },
+                itemBuilder: (BuildContext ctx, int idx) {return createVehicle( idx ); },
             ))
           ]
         )
